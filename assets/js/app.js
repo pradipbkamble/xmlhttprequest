@@ -193,7 +193,7 @@ document.getElementById(id2).remove()
  </div>
 </div>`;
 postcontainer.append(card);
-postForm.reset()
+postForm.reset();
     }
 }
 }
