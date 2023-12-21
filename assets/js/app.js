@@ -31,8 +31,9 @@ let onEdit=(ele)=>{
 cl(ele)
 let newid= ele.closest(".card").id;
 cl(newid)
-localStorage.setItem("editid",newid);
+localStorage.setItem(`editid`,newid);
 let objurl1=`${baseUrl}/posts/${newid}`;
+window.scrollTo(0,0)
   cl(objurl1)
   AllApicall("GET",objurl1);
   
@@ -79,11 +80,11 @@ let createfun=(ele)=>{
  card.id=ele.id;
  card.innerHTML=` 
  <div class="card-header">
- <h2>${ele.title}</h2>
+ <h2>${datafromdb.title}</h2>
      </div>
  <div class="card-body">
  <p>
-   ${ele.body}
+   ${datafromdb.body}
      </p>
        </div>
    <div class="card-footer d-flex justify-content-between">
@@ -94,7 +95,7 @@ let createfun=(ele)=>{
      Delete
      </button>
  </div>
-</div>
+</div>0p
  `;
  postcontainer.append(card);
  postForm.reset;
@@ -110,7 +111,6 @@ let createfun=(ele)=>{
         cl(newPost);
         AllApicall("POST",postsUrl,newPost);
 
-
          }
 let onupdate=()=>{
 let updobj= {
@@ -120,10 +120,11 @@ let updobj= {
 }
 cl(updobj)
 let updid=localStorage.getItem("editid");
-//cl(updid)
+cl(updid)
 let updurl=`${postsUrl}/${updid}`
 cl(updurl)
-AllApicall("PUT",updurl);
+AllApicall("PUT",updurl,updobj)
+submitbtn.reset()
             }
 let AllApicall=(method,apiurl,datafromdb=null)=>{
     lader.classList.remove("d-none");
@@ -148,8 +149,8 @@ if(xhr.status===200 || xhr.status===201 && xhr.readyState===4){
        )//we will patch data inform
     }
     else if(method==="PUT"){
-        let id1=JSON.parse(xhr.response).id;
-        let card =document.getElementById(id1);
+        let id=JSON.parse(xhr.response).id;
+        let card =document.getElementById(id);
         cl(card)
         let cardchild= [...card.children]//gets htmlcollections like body header footer
         cl(cardchild)
@@ -193,7 +194,7 @@ document.getElementById(id2).remove()
  </div>
 </div>`;
 postcontainer.append(card);
-postForm.reset();
+postForm.reset()
     }
 }
 }
