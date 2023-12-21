@@ -194,7 +194,7 @@ document.getElementById(id2).remove()
      Delete
      </button>
  </div>
-</div>`;
+</div>`;//
 postcontainer.append(card);
 postForm.reset()
     }
