@@ -28,6 +28,7 @@ const lader = document.getElementById("lader");
 // PUT/PATCH
 // DELETE
 let onEdit=(ele)=>{
+    lader.classList.remove("d-none");
 cl(ele)
 let newid= ele.closest(".card").id;
 cl(newid)
@@ -36,6 +37,7 @@ let objurl1=`${baseUrl}/posts/${newid}`;
 window.scrollTo(0,0)
   cl(objurl1)
   AllApicall("GET",objurl1);
+  lader.classList.add("d-none");
   
 };
 let onDelet=(del)=>{
